@@ -1,3 +1,7 @@
+Allyson Moore
+Computer Science 1 - Halverson
+Lab 12: 2D-Arrays
+
 O . O 
 O . . 
 X X X 
