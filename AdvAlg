@@ -1,0 +1,144 @@
+//Ally Moore
+//Adv. Algorithms
+//September 22, 2021
+//Homework 1
+
+#include <iostream>
+#include <list>
+#include <string>
+//#include <>
+
+using namespace std;
+//Student structure for list
+//holds students first and last names, gender, age and id
+struct Student
+{
+  string firstname, lastname;
+  char gender;
+  int age, ID; 
+
+  Student()
+  {
+    firstname = "null";
+    lastname = "null";
+    gender = 'x';
+    age = -1;
+    ID = 0; 
+  }
+  Student(string fn, string ln, char g, int a, int id)
+  {
+    firstname = fn;
+    lastname = ln;
+    gender = g;
+    age = a;
+    ID = id;
+  }
+};
+
+
+int main()
+{ //char x holds user input for whether or not they want to add another student to records
+  char x;
+  //variables to hold data to be used to construct a Student 
+  string fn, ln;
+  char g;
+  int a;
+  int id = 0;
+  
+  //creates list and iterator variable
+  list<Student> StudentRecords;
+  list<Student>::iterator iter;
+
+  //(1)Begins to populate list
+  cout << "Would you like to add a student to the records? (y/n)";
+  cin >> x;
+  while(x == 'y' || x == 'Y')
+  { //creates a new student and gets the data from the user
+    
+    cout << "What is the students first name?";
+    cin >> fn;
+    cout << "What is the students last name?";
+    cin >> ln;
+    cout << "What is the students gender? (m/f)";
+    cin >> g;
+    cout << "What is the students age?";
+    cin >> a;
+    id++;
+
+    //assigns the data from user to the student N
+    Student N;
+    N.firstname = fn;
+    N.lastname = ln;
+    N.gender = g;
+    N.age = a;
+    N.ID = id;
+    
+    //adds new student to the tail of the list
+    StudentRecords.push_back(N);
+
+    //asks user if they would like to continue adding students to records
+    cout << "Would you like to add another student? (y/n)";
+    cin >> x;
+  }
+  //Concludes initial list population
+
+
+  //(2)Displays list in requested format
+  for(iter = StudentRecords.begin(); iter != StudentRecords.end(); iter++)
+  { cout << endl;
+    cout << iter->firstname << " ";
+    cout << iter->lastname << " - id:";
+    cout << iter->ID;
+
+    if(iter == StudentRecords.begin())
+    {
+      cout << " (Head)";
+    }
+    
+  }
+  cout << " (Tail)" << endl;
+
+  //(3)removes node at the Head
+  StudentRecords.pop_front();
+
+  //(4)removes node at the Tail
+  StudentRecords.pop_back();
+
+  //(5)Asks user if they want to add more students and updates list accordingly
+  cout << "Would you like to add more students to the records? (y/n)";
+  cin >> x;
+  while(x == 'y' || x == 'Y')
+  { //creates a new student and gets the data from the user
+    
+    cout << "What is the students first name?";
+    cin >> fn;
+    cout << "What is the students last name?";
+    cin >> ln;
+    cout << "What is the students gender? (m/f)";
+    cin >> g;
+    cout << "What is the students age?";
+    cin >> a;
+    id++;
+
+    //assigns the data from user to the student N
+    Student N;
+    N.firstname = fn;
+    N.lastname = ln;
+    N.gender = g;
+    N.age = a;
+    N.ID = id;
+    
+    //adds new student to the list
+    StudentRecords.push_back(N);
+
+    //asks user if they would like to continue adding students to records
+    cout << "Would you like to add another student? (y/n)";
+    cin >> x;
+  }
+
+  //(6)displays list again, with only first names
+  for(iter = StudentRecords.begin(); iter != StudentRecords.end(); iter++)
+  {
+    cout << endl << iter->firstname; 
+  }
+};
